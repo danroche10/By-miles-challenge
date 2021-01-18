@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
 import "./Login.css";
 
 async function loginUser(credentials) {
-  return fetch("https://api.bybits.co.uk/auth/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application / json",
-      environment: "mock",
-    },
-    body: {
-      username: credentials.username,
-      password: credentials.password,
-      type: "USER_PASSWORD_AUTH",
-    },
-  }).then((data) => data.json());
+  try {
+    return fetch("https://api.bybits.co.uk/auth/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application / json",
+        environment: "mock",
+      },
+      body: Object.assign({}, JSON.stringify(credentials), {
+        type: "USER_PASSWORD_AUTH",
+      }),
+    }).then((data) => data.json());
+  } catch {
+    console.log("error");
+  }
 }
 
 export default function Login({ setToken }) {
@@ -49,6 +50,7 @@ export default function Login({ setToken }) {
           />
         </label>
         <div>
+          <br></br>
           <button type="submit">Sign in</button>
         </div>
       </form>
