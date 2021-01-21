@@ -34,7 +34,7 @@ const UserDetails = (access) => {
       <div>
         <b>Policy Reference</b>
       </div>
-      {!loading && <div>{data.policy.policy_ref}</div>}
+      {!loading && <div>{data.policy.policy_ref.replaceAll("-", " ")}</div>}
       <br></br>
       <div>
         <b>Cover Type</b>
