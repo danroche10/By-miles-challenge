@@ -23,6 +23,10 @@ const UserDetails = (access) => {
     fetchMyAPI();
   }, []);
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className="login-wrapper">
       <h1>My Policy</h1>
@@ -42,8 +46,8 @@ const UserDetails = (access) => {
       </div>
       {!loading && (
         <div>
-          {data.vehicle.make} {data.vehicle.model} {data.vehicle.colour}{" "}
-          {data.vehicle.reg}
+          {capitalizeFirstLetter(data.vehicle.make)} {data.vehicle.model}{" "}
+          {capitalizeFirstLetter(data.vehicle.colour)} -{data.vehicle.reg}
         </div>
       )}
       <br></br>
